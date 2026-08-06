@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EKBN Analytics — Data Portfolio & Web Engine
 
-## Getting Started
+> **Production-ready data analytics and analytics engineering portfolio built with Next.js 16, TypeScript, and Tailwind CSS v4.**
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Executive Summary
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**EKBN Analytics** is a high-performance web platform engineered to showcase business intelligence models, telemetry data pipelines, and decision-ready interactive visual dashboards. It bridges the gap between technical data engineering (SQL, Python, PostgreSQL, RLHF evaluation) and executive-level business presentation.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tech Stack & Architecture
 
-## Learn More
+- **Framework:** Next.js 16 (App Router with Turbopack)
+- **Language:** TypeScript (Strict Type System)
+- **Styling & UI:** Tailwind CSS v4, Lucide Icons, `next-themes` (Dark/Light mode support)
+- **Components & Layout:** Component-driven design (shadcn/ui primitives, custom container & section primitives)
+- **Analytics Infrastructure:** SQL, PostgreSQL, Python data pipelines, Power BI & Recharts visualization hooks
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📂 Repository Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```text
+ekbn-analytics-portfolio/
+├── src/
+│   ├── app/                      # Next.js App Router routes & pages
+│   │   ├── projects/             # Projects index & dynamic detail routes ([slug])
+│   │   ├── globals.css           # Tailwind v4 theme CSS & variables
+│   │   ├── layout.tsx            # Root layout with Header, Footer & ThemeProvider
+│   │   └── page.tsx              # Modern portfolio landing page shell
+│   ├── components/               # Modular UI Components
+│   │   ├── layout/               # Container, Section, Header, Footer primitives
+│   │   ├── navigation/           # Responsive Desktop Nav & Mobile Sheet Drawer
+│   │   ├── projects/             # Project cards & case study renderers
+│   │   ├── charts/               # Reusable chart & data visualization wrappers
+│   │   ├── theme-provider.tsx    # client theme context wrapper
+│   │   └── theme-toggle.tsx      # Dark/Light mode theme button
+│   ├── data/                     # Project metadata & case study data files
+│   ├── lib/                      # Utility functions (`cn` helper, formatters)
+│   └── types/                    # Core TypeScript interface declarations (`project.ts`)
+└── public/                       # Static assets & public media
