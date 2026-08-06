@@ -41,3 +41,50 @@ ekbn-analytics-portfolio/
 │   ├── lib/                      # Utility functions (`cn` helper, formatters)
 │   └── types/                    # Core TypeScript interface declarations (`project.ts`)
 └── public/                       # Static assets & public media
+
+Getting Started
+Prerequisites
+Node.js: v18.x or higher
+
+Package Manager: npm (v9+)
+
+Installation & Setup
+Clone the repository:
+
+Bash
+git clone [https://github.com/E-KB-N/ekbn-analytics-portfolio.git](https://github.com/E-KB-N/ekbn-analytics-portfolio.git)
+cd ekbn-analytics-portfolio
+Install dependencies:
+
+Bash
+npm install
+Run the development server:
+
+Bash
+npm run dev
+Open http://localhost:3000 in your browser to view the application live.
+
+Build for production:
+
+Bash
+npm run build
+
+ Key Features
+ Zero-FOUC Theme Engine: Seamless dark slate and light mode switching powered by next-themes and CSS variables.
+
+ Responsive Mobile Drawer: Accessibility-first mobile sheet navigation built for high-touch targets.
+
+ Metric-First Project System: Built-in TypeScript interfaces enforcing explicit key metrics and outcomes for every analytical case study.
+
+ Turbopack Accelerated: Ultra-fast hot-reloading and compilation times using Next.js 16 native Turbopack engine.
+
+Author
+Edward Kojo Boateng Ntow (EKBN)
+
+Data Analyst | Analytics Engineer | Business Analyst | AI Evaluator
+
+GitHub: @E-KB-N
+
+LinkedIn: [Edward Kojo Boateng Ntow](https://www.linkedin.com/in/edward-kojo-boateng-n-346111136)
+
+© 2026 EKBN Analytics. All rights reserved.
