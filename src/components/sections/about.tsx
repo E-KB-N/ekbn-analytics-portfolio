@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Award, BarChart2, Bot, BrainCircuit, Dribbble, Trophy } from "lucide-react";
+import { Award, BarChart2, Bot, BrainCircuit, Globe, Trophy } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 
@@ -18,7 +18,7 @@ export function AboutSection() {
           </h2>
 
           <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
-            I’m a Business Analyst and Data Specialist driven by turning complex, unorganized datasets into clear operational strategy. Beyond enterprise business intelligence, my world revolves around sports, specifically football and basketball. 
+            I’m a Business Analyst and Data Specialist driven by turning complex, unorganized datasets into clear operational strategy. Beyond enterprise business intelligence, my world revolves around sports, specifically football and basketball.
           </p>
 
           <blockquote className="my-6 rounded-xl border-l-4 border-primary bg-muted/40 p-4 text-sm italic text-foreground sm:text-base">
