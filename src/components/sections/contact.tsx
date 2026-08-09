@@ -31,7 +31,7 @@ export function ContactSection() {
               size="lg"
             >
               <Mail className="size-4" />
-              kojobateng514@gmail.com
+              kojoboateng514@gmail.com
             </Button>
 
             <Button
