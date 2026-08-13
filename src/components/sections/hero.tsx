@@ -56,7 +56,7 @@ export function HeroSection() {
           {/* Header Badge */}
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3.5 py-1.5 text-xs font-semibold text-primary shadow-[0_0_30px_-14px_var(--primary)] sm:text-sm">
             <Database aria-hidden="true" className="size-4" />
-            Business Analyst & Data Specialist
+            Data and Performance Analyst
           </div>
 
           {/* Main Headline */}
