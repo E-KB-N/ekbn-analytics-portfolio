@@ -87,7 +87,7 @@ export function Header() {
               >
                 <Menu className="size-5" />
               </SheetTrigger>
-              <SheetContent className="flex flex-col justify-between" side="right">
+              <SheetContent className="flex flex-col justify-between p-6 pb-10" side="right">
                 <SheetHeader className="text-left">
                   <SheetTitle className="flex items-center gap-2 text-base font-bold">
                     <div className="flex size-7 items-center justify-center rounded-md bg-primary text-primary-foreground">
@@ -98,7 +98,7 @@ export function Header() {
                 </SheetHeader>
 
                 {/* Mobile Navigation Links */}
-                <nav className="mt-8 flex flex-col gap-4">
+                <nav className="mt-8 flex flex-col gap-5">
                   {navLinks.map((link) => (
                     <Link
                       key={link.href}
@@ -112,7 +112,7 @@ export function Header() {
                 </nav>
 
                 {/* Mobile Drawer Footer Action */}
-                <div className="mt-auto pt-6 border-t border-border/60">
+                <div className="mt-auto border-t border-border/60 pt-6 mb-2">
                   <Button
                     className="w-full justify-center"
                     render={
@@ -123,7 +123,7 @@ export function Header() {
                     }
                     size="default"
                   >
-                    <Download className="size-4 mr-2" />
+                    <Download className="mr-2 size-4" />
                     Download Resume (PDF)
                   </Button>
                 </div>
