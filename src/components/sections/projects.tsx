@@ -1,60 +1,123 @@
+"use client";
+
 import Link from "next/link";
-import { ArrowUpRight, BarChart3, Database, GitBranch, Terminal } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
+import { ArrowUpRight, BarChart3 } from "lucide-react";
 import { Container } from "@/components/layout/container";
 
-interface GitHubProject {
+interface FeaturedProject {
   title: string;
-  repoName: string;
   category: string;
   description: string;
   highlights: string[];
   techStack: string[];
   githubUrl: string;
-  liveUrl?: string;
+  imageSrc: string;
 }
 
-const githubProjects: GitHubProject[] = [
+const featuredProjects: FeaturedProject[] = [
   {
-    title: "Uber Marketplace Cancellation Telemetry",
-    repoName: "uber-marketplace-cancellation-telemetry",
-    category: "Data Engineering & Pipeline",
+    title: "African World Cup Performance Index (2014–Present)",
+    category: "Sports Data & Historical Intelligence",
     description:
-      "Programmatic data pipeline and relational database model engineered to simulate, ingest, and analyze driver-rider cancellation patterns and supply/demand bottlenecks.",
+      "A statistical evaluation tracking the trajectory, operational telemetry, and tactical efficiency of African national teams across FIFA World Cup tournaments since 2014.",
     highlights: [
-      "Generated PostgreSQL database schemas to model ride-hailing cancellations.",
-      "Engineered Python ETL scripts to normalize unstructured ride telemetry data.",
-      "Connected relational data models directly to Power BI for interactive dashboarding.",
+      "Aggregated and modeled multi-tournament match telemetry to identify underlying performance trends and tactical shifts.",
+      "Evaluated key performance indicators across shot efficiency, defensive resilience, and transition dynamics against global opposition.",
     ],
-    techStack: ["Python", "PostgreSQL", "Power BI", "SQL", "ETL"],
-    githubUrl: "https://github.com/E-KB-N/uber-marketplace-cancellation-telemetry",
+    techStack: ["Python", "SQL", "Sports Analytics", "Data Visualization"],
+    githubUrl: "https://github.com/E-KB-N/african-football-operations-portal",
+    imageSrc: "/images/projects/Half-space insights.png",
   },
   {
-    title: "EKBN Analytics Portfolio",
-    repoName: "ekbn-analytics-portfolio",
-    category: "Full-Stack Web & BI Showcase",
+    title: "Half-Space Predictive Intelligence Engine",
+    category: "Predictive Analytics & Modeling",
     description:
-      "Modern, fast portfolio site built with Next.js, Tailwind CSS, and Base UI to highlight data analytics case studies, projects, and professional background.",
+      "An analytical data engine leveraging Expected Goals (xG) frameworks and match sequence data to forecast match outcomes, Over/Under (1.5, 2.5) total goals, and Both Teams to Score (BTTS) probabilities across Europe's top 5 leagues and the UEFA Champions League.",
     highlights: [
-      "Built with Next.js App Router, TypeScript, and Tailwind CSS.",
-      "Custom dark-mode responsive layouts and accessible UI components.",
+      "Engineered machine learning models to generate high-probability win and goal-market predictions.",
+      "Integrated positional tracking and team sequence metrics to evaluate goal-scoring likelihoods.",
     ],
-    techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Base UI"],
-    githubUrl: "https://github.com/E-KB-N/ekbn-analytics-portfolio",
+    techStack: ["Python", "xG Modeling", "Machine Learning", "Predictive Analytics"],
+    githubUrl: "https://github.com/E-KB-N/half-space-analytics",
+    imageSrc: "/images/projects/Half-space analytics.png",
   },
   {
-    title: "iGaming Customer Experience Dashboard",
-    repoName: "igaming-cx-dashboard",
-    category: "Business Intelligence",
+    title: "BetEKBN Ghana CX & Operations Analytics",
+    category: "iGaming & Customer Experience",
     description:
-      "Power BI operational dashboard designed to isolate sign-up bottlenecks, track KYC verification drop-offs, and monitor customer journey friction.",
+      "Operational analytics isolating sign-up friction, KYC verification drop-offs, and onboarding bottlenecks to optimize customer conversion pipelines.",
     highlights: [
       "Identified that 38% of sign-up delays stemmed from unreadable ID uploads.",
-      "Built interactive funnel visualizations and KPI tracking models.",
+      "Engineered multi-stage funnel models in Power BI to monitor drop-offs.",
     ],
-    techStack: ["Power BI", "DAX", "Data Visualization", "Process Analytics"],
+    techStack: ["Power BI", "DAX", "SQL", "Process Analytics"],
     githubUrl: "https://github.com/E-KB-N",
+    imageSrc: "/images/projects/betekbn-ghana-cx-analytics.png",
+  },
+  {
+    title: "MEKBN Telesales Commercial Performance",
+    category: "Sales & Operational Intelligence",
+    description:
+      "Commercial operations dashboard tracking telesales output, rep efficiency, conversion velocity, and call outcome distribution.",
+    highlights: [
+      "Visualized revenue drivers and agent performance metrics across operational shifts.",
+      "Streamlined commercial reporting for executive review.",
+    ],
+    techStack: ["Power BI", "Excel", "SQL", "Data Modeling", "Commercial BI"],
+    githubUrl: "https://github.com/E-KB-N",
+    imageSrc: "/images/projects/mekbn-telesales-analytics.png",
+  },
+  {
+    title: "UK Student Accommodation Investment Analysis",
+    category: "Market Research & Real Estate BI",
+    description:
+      "Exploratory analytics model examining market density, pricing trends, and regional yield potential across UK student housing sectors.",
+    highlights: [
+      "Mapped key supply/demand indicators across regional hubs.",
+      "Provided data-driven property performance dynamic insights.",
+    ],
+    techStack: ["Excel", "SQL", "Data Analysis", "Market Research"],
+    githubUrl: "https://github.com/E-KB-N",
+    imageSrc: "/images/projects/uk-student-accommodation-analysis.png",
+  },
+  {
+    title: "Invisible Worker Index (IWI)",
+    category: "AI Governance & Data Quality",
+    description:
+      "Analytical framework designed to evaluate data annotation quality, model oversight metrics, and workforce productivity dynamics.",
+    highlights: [
+      "Structured evaluation metrics for tracking human-in-the-loop data quality.",
+      "Engineered clear visual benchmarks for auditability and compliance.",
+    ],
+    techStack: ["Python", "SQL", "Power BI", "Data Governance"],
+    githubUrl: "https://github.com/E-KB-N",
+    imageSrc: "/images/projects/Invisible-Worker-Index-IWI-.png",
   },
 ];
+
+function CardImage({ src, alt }: { src: string; alt: string }) {
+  const [error, setError] = useState(false);
+
+  if (error) {
+    return (
+      <div className="flex h-full w-full items-center justify-center bg-muted/60 text-muted-foreground">
+        <BarChart3 className="size-10 opacity-40" />
+      </div>
+    );
+  }
+
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      onError={() => setError(true)}
+      className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
+    />
+  );
+}
 
 export function ProjectsSection() {
   return (
@@ -62,87 +125,93 @@ export function ProjectsSection() {
       <Container>
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl space-y-3">
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-              <GitBranch className="size-3.5" />
-              <span>GitHub Repositories</span>
-            </div>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Open-Source & Analytical Projects
+              Featured Analytics Projects
             </h2>
             <p className="text-base text-muted-foreground sm:text-lg">
-              Data pipelines, relational database models, and web applications built from scratch.
+              Explore dashboards, predictive engines, and full-stack analytics applications.
             </p>
           </div>
 
-          <Link
-            className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
-            href="https://github.com/E-KB-N"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <span>View GitHub Profile</span>
-            <ArrowUpRight className="size-4" />
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-semibold text-foreground shadow-sm hover:bg-muted"
+              href="https://github.com/E-KB-N"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <span>GitHub</span>
+            </Link>
+            <Link
+              className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-semibold text-foreground shadow-sm hover:bg-muted"
+              href="https://linkedin.com"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <span>LinkedIn</span>
+            </Link>
+          </div>
         </div>
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-2">
-          {githubProjects.map((project) => (
+        <div className="mt-12 grid gap-8 md:grid-cols-2">
+          {featuredProjects.map((project) => (
             <div
               key={project.title}
-              className="group relative flex flex-col justify-between rounded-2xl border border-border/80 bg-card p-6 shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-md sm:p-8"
+              className="group relative flex flex-col overflow-hidden rounded-2xl border border-border/80 bg-card shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-md"
             >
-              <div>
-                <div className="flex items-center justify-between gap-4">
-                  <span className="font-mono text-xs text-primary font-medium">
-                    {project.repoName}
-                  </span>
-                  <span className="rounded-full border border-border/80 bg-muted/50 px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground">
-                    {project.category}
-                  </span>
-                </div>
-
-                <h3 className="mt-4 text-xl font-bold tracking-tight text-foreground group-hover:text-primary">
-                  {project.title}
-                </h3>
-
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  {project.description}
-                </p>
-
-                <ul className="mt-6 space-y-2">
-                  {project.highlights.map((highlight) => (
-                    <li
-                      key={highlight}
-                      className="flex items-start gap-2 text-xs text-muted-foreground"
-                    >
-                      <span className="mt-1 size-1.5 shrink-0 rounded-full bg-primary" />
-                      <span>{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="relative aspect-[16/9] w-full overflow-hidden bg-muted">
+                <CardImage src={project.imageSrc} alt={project.title} />
               </div>
 
-              <div className="mt-8 border-t border-border/60 pt-6">
-                <div className="flex flex-wrap gap-1.5 mb-4">
-                  {project.techStack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-md border border-border/80 bg-background px-2.5 py-1 text-[11px] font-medium text-muted-foreground"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+              <div className="flex flex-1 flex-col justify-between p-6">
+                <div>
+                  <span className="inline-block rounded-full border border-border/80 bg-muted/50 px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground">
+                    {project.category}
+                  </span>
+
+                  <h3 className="mt-3 text-xl font-bold tracking-tight text-foreground group-hover:text-primary">
+                    {project.title}
+                  </h3>
+
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {project.description}
+                  </p>
+
+                  <ul className="mt-4 space-y-1.5">
+                    {project.highlights.map((highlight) => (
+                      <li
+                        key={highlight}
+                        className="flex items-start gap-2 text-xs text-muted-foreground"
+                      >
+                        <span className="mt-1 size-1.5 shrink-0 rounded-full bg-primary" />
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
-                <Link
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline"
-                  href={project.githubUrl}
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <span>View Repository</span>
-                  <ArrowUpRight className="size-3.5" />
-                </Link>
+                <div className="mt-6 border-t border-border/60 pt-4">
+                  <div className="mb-4 flex flex-wrap gap-1.5">
+                    {project.techStack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="rounded-md border border-border/80 bg-background px-2.5 py-1 text-[11px] font-medium text-muted-foreground"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <Link
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline"
+                    href={project.githubUrl}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <span>View on GitHub</span>
+                    <ArrowUpRight className="size-3.5" />
+                  </Link>
+                </div>
               </div>
             </div>
           ))}
